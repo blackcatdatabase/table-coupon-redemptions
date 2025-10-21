@@ -1,4 +1,4 @@
--- Auto-generated from schema-map.psd1 on 2025-10-21T02:32:05
+-- Auto-generated from schema-map.psd1 @ 1e83bb6 (2025-10-21T10:18:36+02:00)
 -- table: coupon_redemptions
 ALTER TABLE coupon_redemptions ADD CONSTRAINT fk_cr_coupon FOREIGN KEY (coupon_id) REFERENCES coupons(id) ON DELETE CASCADE;
 
