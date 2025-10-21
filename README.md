@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-> Schema package for table **coupon_redemptions** (repo: $slug).
+> Schema package for table **coupon_redemptions** (repo: `coupon-redemptions`).
 
 ## Files
 ```
@@ -52,12 +52,12 @@ mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```mermaid
 erDiagram
   COUPON_REDEMPTIONS {
-    BIGINT id PK
-    BIGINT coupon_id
-    BIGINT user_id
-    BIGINT order_id
-    DATETIME(6) redeemed_at
-    DECIMAL(12,2) amount_applied
+    INT id PK
+    INT coupon_id
+    INT user_id
+    INT order_id
+    DATETIME redeemed_at
+    DECIMAL amount_applied
   }
   COUPON_REDEMPTIONS }o--|| COUPONS : "coupon_id"
   COUPON_REDEMPTIONS }o--|| ORDERS : "order_id"
