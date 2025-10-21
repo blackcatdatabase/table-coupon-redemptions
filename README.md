@@ -59,9 +59,9 @@ erDiagram
     DATETIME(6) redeemed_at
     DECIMAL(12,2) amount_applied
   }
-  COUPON_REDEMPTIONS }o--|| COUPONS : (coupon_id)
-  COUPON_REDEMPTIONS }o--|| ORDERS : (order_id)
-  COUPON_REDEMPTIONS }o--|| USERS : (user_id)
+  COUPON_REDEMPTIONS }o--|| COUPONS : "coupon_id"
+  COUPON_REDEMPTIONS }o--|| ORDERS : "order_id"
+  COUPON_REDEMPTIONS }o--|| USERS : "user_id"
 ```
 
 ## Indexes
