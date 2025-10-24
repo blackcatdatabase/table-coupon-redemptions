@@ -6,7 +6,7 @@ namespace BlackCat\Database\Packages\CouponRedemptions;
 final class Definitions {
     // --- základní metadata ---
     public static function table(): string { return 'coupon_redemptions'; }
-    public static function contractView(): string { return 'v_coupon_redemptions_contract'; }
+    public static function contractView(): string { return 'vw_coupon_redemptions'; }
     /** @return string[] */
     public static function columns(): array { return [ 'id', 'coupon_id', 'user_id', 'order_id', 'redeemed_at', 'amount_applied' ]; }
     public static function pk(): string { return 'id'; }

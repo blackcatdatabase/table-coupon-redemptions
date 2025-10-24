@@ -1,5 +1,6 @@
--- Auto-generated from schema-map.psd1 (map@6cefe8e)
--- table: coupon_redemptions
+-- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-10-24T09:13:35Z)
+-- engine: mysql
+-- table:  coupon_redemptions
 CREATE TABLE IF NOT EXISTS coupon_redemptions (
   id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   coupon_id BIGINT UNSIGNED NOT NULL,
