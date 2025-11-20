@@ -1,4 +1,4 @@
-<!-- Auto-generated from schema-map.psd1 @ 6cefe8e (2025-10-22T20:27:41+02:00) -->
+<!-- Auto-generated from schema-map-postgres.psd1 @ 62c9c93 (2025-11-20T21:38:11+01:00) -->
 # Definition – coupon_redemptions
 
 Records of coupon usage per order and user.
@@ -6,9 +6,10 @@ Records of coupon usage per order and user.
 ## Columns
 | Column | Type | Null | Default | Description | Notes |
 |-------:|:-----|:----:|:--------|:------------|:------|
-| id | BIGINT UNSIGNED | — | — | Surrogate primary key. |  |
-| coupon_id | BIGINT UNSIGNED | NO | — | Coupon (FK coupons.id). |  |
-| user_id | BIGINT UNSIGNED | NO | — | User (FK users.id). |  |
-| order_id | BIGINT UNSIGNED | NO | — | Order (FK orders.id). |  |
-| redeemed_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |  |
-| amount_applied | DECIMAL(12,2) | NO | — | Applied discount amount. |  |
+| id | BIGINT | — | AS | Surrogate primary key. |  |
+| tenant_id | BIGINT | NO | — |  |  |
+| coupon_id | BIGINT | NO | — | Coupon (FK coupons.id). |  |
+| user_id | BIGINT | NO | — | User (FK users.id). |  |
+| order_id | BIGINT | NO | — | Order (FK orders.id). |  |
+| redeemed_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |  |
+| amount_applied | NUMERIC(12,2) | NO | — | Applied discount amount. |  |

@@ -2,7 +2,7 @@
 
 ![SQL](https://img.shields.io/badge/SQL-MySQL%208.0%2B-4479A1?logo=mysql&logoColor=white) ![License](https://img.shields.io/badge/license-BlackCat%20Proprietary-red) ![Status](https://img.shields.io/badge/status-stable-informational) ![Generated](https://img.shields.io/badge/generated-from%20schema--map-blue)
 
-<!-- Auto-generated from schema-map.psd1 @ 6cefe8e (2025-10-22T20:27:41+02:00) -->
+<!-- Auto-generated from schema-map-postgres.psd1 @ 62c9c93 (2025-11-20T21:38:11+01:00) -->
 
 > Schema package for table **coupon_redemptions** (repo: `coupon-redemptions`).
 
@@ -10,7 +10,7 @@
 ```
 schema/
   001_table.sql
-  # (no deferred indexes declared in map)
+  020_indexes.sql
   030_foreign_keys.sql
 ```
 
@@ -18,12 +18,14 @@ schema/
 ```bash
 # Apply schema (Linux/macOS):
 mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/001_table.sql
+mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/020_indexes.sql
 mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" < schema/030_foreign_keys.sql
 ```
 
 ```powershell
 # Apply schema (Windows PowerShell):
 mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/001_table.sql
+mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/020_indexes.sql
 mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/030_foreign_keys.sql
 ```
 
@@ -33,41 +35,46 @@ mysql -h $env:DB_HOST -u $env:DB_USER -p$env:DB_PASS $env:DB_NAME < schema/030_f
 docker run --rm -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=app -p 3307:3306 -d mysql:8
 sleep 15
 mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/001_table.sql
+mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/020_indexes.sql
 mysql -h 127.0.0.1 -P 3307 -u root -proot app < schema/030_foreign_keys.sql
 ```
 
 ## Columns
 | Column | Type | Null | Default | Extra |
 |-------:|:-----|:----:|:--------|:------|
-| id | BIGINT UNSIGNED | — | — | AUTO_INCREMENT, PK |
-| coupon_id | BIGINT UNSIGNED | NO | — |  |
-| user_id | BIGINT UNSIGNED | NO | — |  |
-| order_id | BIGINT UNSIGNED | NO | — |  |
-| redeemed_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) |  |
-| amount_applied | DECIMAL(12,2) | NO | — |  |
+| id | BIGINT | — | AS | PK |
+| tenant_id | BIGINT | NO | — |  |
+| coupon_id | BIGINT | NO | — |  |
+| user_id | BIGINT | NO | — |  |
+| order_id | BIGINT | NO | — |  |
+| redeemed_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) |  |
+| amount_applied | NUMERIC(12,2) | NO | — |  |
 
 ## Relationships
-- FK → **coupons** via (coupon_id) (ON DELETE CASCADE).
-- FK → **orders** via (order_id) (ON DELETE CASCADE).
+- FK → **coupons** via (tenant_id,coupon_id) (ON DELETE CASCADE).
+- FK → **orders** via (tenant_id,order_id) (ON DELETE CASCADE).
+- FK → **tenants** via (tenant_id) (ON DELETE RESTRICT).
 - FK → **users** via (user_id) (ON DELETE CASCADE).
 
 ```mermaid
 erDiagram
   COUPON_REDEMPTIONS {
     INT id PK
+    INT tenant_id
     INT coupon_id
     INT user_id
     INT order_id
-    DATETIME redeemed_at
+    TIMESTAMPTZ redeemed_at
     DECIMAL amount_applied
   }
-  COUPON_REDEMPTIONS }o--|| COUPONS : "coupon_id"
-  COUPON_REDEMPTIONS }o--|| ORDERS : "order_id"
+  COUPON_REDEMPTIONS }o--|| COUPONS : "tenant_id, coupon_id"
+  COUPON_REDEMPTIONS }o--|| ORDERS : "tenant_id, order_id"
+  COUPON_REDEMPTIONS }o--|| TENANTS : "tenant_id"
   COUPON_REDEMPTIONS }o--|| USERS : "user_id"
 ```
 
 ## Indexes
-- No deferred indexes declared for this table.
+- 7 deferred index statement(s) in schema/020_indexes.sql.
 
 ## Notes
 - Generated from the umbrella repository **blackcat-database** using `scripts/schema-map.psd1`.
