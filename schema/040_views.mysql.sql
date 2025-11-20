@@ -5,6 +5,7 @@
 CREATE OR REPLACE ALGORITHM=MERGE SQL SECURITY INVOKER VIEW vw_coupon_redemptions AS
 SELECT
   id,
+  tenant_id,
   coupon_id,
   user_id,
   order_id,
