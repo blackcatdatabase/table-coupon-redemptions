@@ -1,4 +1,4 @@
--- Auto-generated from schema-map-postgres.psd1 (map@9d3471b)
+-- Auto-generated from schema-map-postgres.psd1 (map@62c9c93)
 -- engine: postgres
 -- table:  coupon_redemptions
 CREATE INDEX IF NOT EXISTS idx_cr_coupon ON coupon_redemptions (coupon_id);
