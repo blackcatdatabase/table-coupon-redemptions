@@ -1,6 +1,7 @@
--- Auto-generated from schema-map-mysql.psd1 (map@62c9c93)
+-- Auto-generated from schema-map-mysql.psd1 (map@mtime:2025-11-27T15:13:14Z)
 -- engine: mysql
 -- table:  coupon_redemptions
+
 CREATE INDEX idx_cr_coupon ON coupon_redemptions (coupon_id);
 
 CREATE INDEX idx_cr_user   ON coupon_redemptions (user_id);
