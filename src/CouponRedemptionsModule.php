@@ -93,7 +93,7 @@ SQL;
         $hasTable = SchemaIntrospector::hasTable($db, $d, $table);
         $hasView  = SchemaIntrospector::hasView($db, $d, $view);
 
-        // Quick index/FK check – generator injects names (case-sensitive per DB)
+        // Quick index/FK check â€“ generator injects names (case-sensitive per DB)
         $expectedIdx = [ 'idx_cr_coupon', 'idx_cr_order', 'idx_cr_tenant_coupon', 'idx_cr_tenant_order', 'idx_cr_tenant_user', 'idx_cr_user', 'ux_cr_tenant_order_coupon' ];
         if ($d->isMysql()) {
             // Drop PG-only index naming patterns (e.g., GIN/GiST)
