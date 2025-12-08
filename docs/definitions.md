@@ -5,11 +5,11 @@ Records of coupon usage per order and user.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| amount_applied | NUMERIC(12,2) | NO |  | Applied discount amount. |
+| amount_applied | DECIMAL(12,2) | NO |  | Applied discount amount. |
 | coupon_id | BIGINT | NO |  | Coupon (FK coupons.id). |
 | id | BIGINT | NO |  | Surrogate primary key. |
 | order_id | BIGINT | NO |  | Order (FK orders.id). |
-| redeemed_at | TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |
+| redeemed_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |
 | user_id | BIGINT | NO |  | User (FK users.id). |
 
 ## Engine Details
@@ -71,5 +71,5 @@ Foreign keys:
 ## Views
 | View | Engine | Flags | File |
 | --- | --- | --- | --- |
-| vw_coupon_redemptions | mysql | algorithm=MERGE, security=INVOKER | [packages\coupon-redemptions\schema\040_views.mysql.sql](https://github.com/blackcatacademy/blackcat-database/packages/coupon-redemptions/schema/040_views.mysql.sql) |
-| vw_coupon_redemptions | postgres |  | [packages\coupon-redemptions\schema\040_views.postgres.sql](https://github.com/blackcatacademy/blackcat-database/packages/coupon-redemptions/schema/040_views.postgres.sql) |
+| vw_coupon_redemptions | mysql | algorithm=MERGE, security=INVOKER | [schema\040_views.mysql.sql](schema\040_views.mysql.sql) |
+| vw_coupon_redemptions | postgres |  | [schema\040_views.postgres.sql](schema\040_views.postgres.sql) |
