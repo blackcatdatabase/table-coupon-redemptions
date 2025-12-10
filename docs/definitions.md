@@ -5,11 +5,11 @@ Records of coupon usage per order and user.
 ## Columns
 | Column | Type | Null | Default | Description |
 | --- | --- | --- | --- | --- |
-| amount_applied | DECIMAL(12,2) | NO |  | Applied discount amount. |
+| amount_applied | mysql: DECIMAL(12,2) / postgres: NUMERIC(12,2) | NO |  | Applied discount amount. |
 | coupon_id | BIGINT | NO |  | Coupon (FK coupons.id). |
 | id | BIGINT | NO |  | Surrogate primary key. |
 | order_id | BIGINT | NO |  | Order (FK orders.id). |
-| redeemed_at | DATETIME(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |
+| redeemed_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |
 | user_id | BIGINT | NO |  | User (FK users.id). |
 
 ## Engine Details
