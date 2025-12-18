@@ -3,14 +3,15 @@
 Records of coupon usage per order and user.
 
 ## Columns
-| Column | Type | Null | Default | Description |
-| --- | --- | --- | --- | --- |
-| id | BIGINT | NO |  | Surrogate primary key. |
-| coupon_id | BIGINT | NO |  | Coupon (FK coupons.id). |
-| user_id | BIGINT | NO |  | User (FK users.id). |
-| order_id | BIGINT | NO |  | Order (FK orders.id). |
-| redeemed_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |
-| amount_applied | mysql: DECIMAL(12,2) / postgres: NUMERIC(12,2) | NO |  | Applied discount amount. |
+| Column | Type | Null | Default | Description | Crypto |
+| --- | --- | --- | --- | --- | --- |
+| id | BIGINT | NO |  | Surrogate primary key. |  |
+| tenant_id | BIGINT | NO |  | Owning tenant (FK tenants.id). |  |
+| coupon_id | BIGINT | NO |  | Coupon (FK coupons.id). |  |
+| user_id | BIGINT | NO |  | User (FK users.id). |  |
+| order_id | BIGINT | NO |  | Order (FK orders.id). |  |
+| redeemed_at | mysql: DATETIME(6) / postgres: TIMESTAMPTZ(6) | NO | CURRENT_TIMESTAMP(6) | When coupon was redeemed (UTC). |  |
+| amount_applied | mysql: DECIMAL(12,2) / postgres: NUMERIC(12,2) | NO |  | Applied discount amount. |  |
 
 ## Engine Details
 
