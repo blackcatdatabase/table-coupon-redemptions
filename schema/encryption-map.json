@@ -1,0 +1,29 @@
+{
+  "tables": {
+    "coupon_redemptions": {
+      "columns": {
+        "amount_applied": {
+          "strategy": "passthrough"
+        },
+        "coupon_id": {
+          "strategy": "passthrough"
+        },
+        "id": {
+          "strategy": "passthrough"
+        },
+        "order_id": {
+          "strategy": "passthrough"
+        },
+        "redeemed_at": {
+          "strategy": "passthrough"
+        },
+        "tenant_id": {
+          "strategy": "passthrough"
+        },
+        "user_id": {
+          "strategy": "passthrough"
+        }
+      }
+    }
+  }
+}
